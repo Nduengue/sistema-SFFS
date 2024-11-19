@@ -1,0 +1,28 @@
+
+   INFO  Nothing to migrate.  
+
+   INFO  Seeding database.  
+
+
+   UnexpectedValueException 
+
+  The stream or file "/var/www/server_app/storage/logs/laravel.log" could not be opened in append mode: Failed to open stream: Permission denied
+The exception occurred while attempting to log: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: users.email (Connection: sqlite, SQL: insert into "users" ("name", "email", "user_title", "user_type", "password", "privileges", "settings", "account_status", "created_at") values (Marcelo Setula Jos�, marcelosetmark@gmail.com, Administrador Geral, 1, $2y$12$DOLqOjbhJvWCcdkodpH8OeIjxjck3png9piwKiKBLeSO4TXcAIZd6, {"users":{"get":1,"store":1,"put":1,"delete":1},"enrollments":{"get":1,"store":1,"put":1,"delete":1},"registrations":{"get":1,"store":1,"put":1,"delete":1},"courses":{"get":1,"store":1,"put":1,"delete":1},"shifts":{"get":1,"store":1,"put":1,"delete":1},"course-contents":{"get":1,"store":1,"put":1,"delete":1},"summary-calendar":{"get":1,"store":1,"put":1,"delete":1},"classes":{"get":1,"store":1,"put":1,"delete":1},"payments":{"get":1,"store":1,"put":1,"delete":1},"products":{"get":1,"store":1,"put":1,"delete":1},"audits":{"get":1,"store":1,"put":1,"delete":1}}, {"twofa":false,"endSessionInact":10}, 1, 2024-10-17 09:56:41))
+Context: {"exception":{"errorInfo":["23000",19,"UNIQUE constraint failed: users.email"],"connectionName":"sqlite"}}
+
+  at vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:140
+    136▕             }
+    137▕             if (!\is_resource($stream)) {
+    138▕                 $this->stream = null;
+    139▕ 
+  ➜ 140▕                 throw new \UnexpectedValueException(sprintf('The stream or file "%s" could not be opened in append mode: '.$this->errorMessage, $url) . Utils::getRecordMessageForException($record));
+    141▕             }
+    142▕             stream_set_chunk_size($stream, $this->streamChunkSize);
+    143▕             $this->stream = $stream;
+    144▕         }
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
